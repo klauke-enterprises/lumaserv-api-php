@@ -21,9 +21,12 @@ class CoreClient {
         curl_setopt($curl, CURLOPT_URL, $this->baseUrl . $path . (strlen($queryStr) > 0 ? "?" . $queryStr : ""));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($curl, CURLOPT_HTTPHEADER, [
-            "Authorization: Bearer " . $this->apiKey
+            "Authorization: Bearer " . $this->apiKey,
+            'Content-Type: application/json'
         ]);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        if ($body != NULL)
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body));
         $response = curl_exec($curl);
         curl_close($curl);
         return json_decode($response);
