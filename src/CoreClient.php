@@ -974,7 +974,7 @@ class DomainVerificationStatus {
 
 class Server {
     /**
-     * @var int
+     * @var string
      */
     public $variant_id;
     /**
@@ -993,10 +993,6 @@ class Server {
      * @var string
      */
     public $created_at;
-    /**
-     * @var int
-     */
-    public $legacy_id;
     /**
      * @var string
      */
