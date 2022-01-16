@@ -1002,6 +1002,10 @@ class Server {
      */
     public $id;
     /**
+     * @var string
+     */
+    public $state;
+    /**
      * @var object
      */
     public $labels;
