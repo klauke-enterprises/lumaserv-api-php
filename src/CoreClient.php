@@ -1853,6 +1853,13 @@ class SSLOrganisation {
     public $fax;
 }
 
+class ServerCreateRequestNetwork {
+    /**
+     * @var string
+     */
+    public $network_id;
+}
+
 class Domain {
     /**
      * @var string
@@ -3486,6 +3493,10 @@ class ServerCreateRequest {
      * @var string
      */
     public $template_id;
+    /**
+     * @var ServerCreateRequestNetwork[]
+     */
+    public $networks;
     /**
      * @var object
      */

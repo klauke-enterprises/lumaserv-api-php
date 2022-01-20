@@ -81,6 +81,14 @@ class AuthClient {
     }
 
     /**
+     * @return UserSingleResponse
+     */
+    public function createUser($queryParams = []) {
+        $json = $this->request("POST", "/users", $queryParams);
+        return $this->mapper->map($json, new UserSingleResponse());
+    }
+
+    /**
      * @return UserListResponse
      */
     public function getUsers($queryParams = []) {
@@ -186,6 +194,91 @@ class AuthClient {
 
 
 }
+class User {
+    /**
+     * @var Gender
+     */
+    public $gender;
+    /**
+     * @var string
+     */
+    public $last_name;
+    /**
+     * @var string
+     */
+    public $id;
+    /**
+     * @var UserState
+     */
+    public $state;
+    /**
+     * @var int
+     */
+    public $customer_id;
+    /**
+     * @var UserType
+     */
+    public $type;
+    /**
+     * @var string
+     */
+    public $first_name;
+    /**
+     * @var string
+     */
+    public $email;
+}
+
+abstract class UserState {
+    const PENDING = "PENDING";
+    const ACTIVATED = "ACTIVATED";
+    const LOCKED = "LOCKED";
+}
+
+class Token {
+    /**
+     * @var string
+     */
+    public $user_id;
+    /**
+     * @var TokenScope
+     */
+    public $scope;
+    /**
+     * @var string
+     */
+    public $validUntil;
+    /**
+     * @var string
+     */
+    public $created_at;
+    /**
+     * @var string
+     */
+    public $type;
+    /**
+     * @var string
+     */
+    public $token;
+}
+
+class ResponseMessage {
+    /**
+     * @var string
+     */
+    public $message;
+    /**
+     * @var string
+     */
+    public $key;
+}
+
+abstract class Gender {
+    const MALE = "MALE";
+    const FEMALE = "FEMALE";
+    const OTHER = "OTHER";
+}
+
 class Project {
     /**
      * @var string
@@ -199,41 +292,6 @@ class Project {
      * @var string
      */
     public $title;
-}
-
-class User {
-    /**
-     * @var string
-     */
-    public $gender;
-    /**
-     * @var string
-     */
-    public $last_name;
-    /**
-     * @var string
-     */
-    public $id;
-    /**
-     * @var string
-     */
-    public $state;
-    /**
-     * @var int
-     */
-    public $customer_id;
-    /**
-     * @var string
-     */
-    public $type;
-    /**
-     * @var string
-     */
-    public $first_name;
-    /**
-     * @var string
-     */
-    public $email;
 }
 
 class TokenValidationInfo {
@@ -273,33 +331,6 @@ class TokenScope {
     public $project_id;
 }
 
-class Token {
-    /**
-     * @var string
-     */
-    public $user_id;
-    /**
-     * @var TokenScope
-     */
-    public $scope;
-    /**
-     * @var string
-     */
-    public $validUntil;
-    /**
-     * @var string
-     */
-    public $created_at;
-    /**
-     * @var string
-     */
-    public $type;
-    /**
-     * @var string
-     */
-    public $token;
-}
-
 class ResponseMessages {
     /**
      * @var ResponseMessage[]
@@ -315,17 +346,6 @@ class ResponseMessages {
     public $infos;
 }
 
-class ResponseMessage {
-    /**
-     * @var string
-     */
-    public $message;
-    /**
-     * @var string
-     */
-    public $key;
-}
-
 class ProjectMember {
     /**
      * @var string
@@ -339,6 +359,11 @@ class ProjectMember {
      * @var string
      */
     public $project_id;
+}
+
+abstract class UserType {
+    const CUSTOMER = "CUSTOMER";
+    const ADMIN = "ADMIN";
 }
 
 class ResponseMetadata {
@@ -641,5 +666,36 @@ class ProjectUpdateRequest {
      * @var string
      */
     public $title;
+}
+
+class UserCreateRequest {
+    /**
+     * @var string
+     */
+    public $password;
+    /**
+     * @var Gender
+     */
+    public $gender;
+    /**
+     * @var string
+     */
+    public $last_name;
+    /**
+     * @var string
+     */
+    public $company;
+    /**
+     * @var UserType
+     */
+    public $type;
+    /**
+     * @var string
+     */
+    public $first_name;
+    /**
+     * @var string
+     */
+    public $email;
 }
 
