@@ -285,10 +285,6 @@ class Project {
      */
     public $id;
     /**
-     * @var object
-     */
-    public $detail;
-    /**
      * @var string
      */
     public $title;
@@ -650,18 +646,10 @@ class ProjectCreateRequest {
     /**
      * @var string
      */
-    public $customer_reference;
-    /**
-     * @var string
-     */
     public $title;
 }
 
 class ProjectUpdateRequest {
-    /**
-     * @var string
-     */
-    public $customer_reference;
     /**
      * @var string
      */

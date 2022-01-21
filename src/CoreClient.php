@@ -105,6 +105,14 @@ class CoreClient {
     }
 
     /**
+     * @return ServerSingleResponse
+     */
+    public function updateServer($body, $id, $queryParams = []) {
+        $json = $this->request("PUT", "/servers/$id", $queryParams, $body);
+        return $this->mapper->map($json, new ServerSingleResponse());
+    }
+
+    /**
      * @return ServerStorageClassSingleResponse
      */
     public function getServerStorageClass($id, $queryParams = []) {
@@ -3924,6 +3932,17 @@ class ServerMediaCreateRequest {
      * @var string
      */
     public $title;
+}
+
+class ServerUpdateRequest {
+    /**
+     * @var string
+     */
+    public $name;
+    /**
+     * @var object
+     */
+    public $labels;
 }
 
 class DomainUpdateRequest {
