@@ -1,5 +1,5 @@
 {
-    "name": "lumaserv/lumaserv-api-php",
+    "name": "klauke-enterprises/lumaserv-api-php",
     "description": "PHP Client for the LUMASERV API",
     "type": "library",
     "license": "Apache-2.0",
@@ -13,6 +13,10 @@
         {
             "name": "LUMASERV",
             "email": "info@lumaserv.com"
+        },
+        {
+            "name": "Klauke Enterprises",
+            "email": "info@klauke-enterprises.com"
         }
     ],
     "require": {
